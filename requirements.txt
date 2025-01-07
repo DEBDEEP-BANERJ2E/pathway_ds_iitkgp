@@ -1,0 +1,12 @@
+pathway
+torch
+transformers
+scikit-learn
+pandas
+numpy
+fastapi
+uvicorn
+langchain
+pytest
+joblib
+openai

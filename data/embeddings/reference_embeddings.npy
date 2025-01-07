@@ -1,0 +1,13 @@
+reference_texts = [
+    "High innovation and robust methods",
+    "Cutting-edge ML algorithms",
+    "Strong language models and practical applications",
+    "Scalable and data-driven insights",
+    "Novel theoretical approaches and reproducibility"
+]
+
+# Generate embeddings
+reference_embeddings = get_embeddings(reference_texts)
+
+# Save embeddings
+np.save("data/embeddings/reference_embeddings.npy", reference_embeddings)

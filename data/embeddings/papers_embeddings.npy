@@ -1,0 +1,28 @@
+import numpy as np
+from transformers import AutoTokenizer, AutoModel
+import torch
+
+# Load SciBERT model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("allenai/scibert_scivocab_uncased")
+model = AutoModel.from_pretrained("allenai/scibert_scivocab_uncased")
+
+# Sample abstracts from papers.csv
+abstracts = [
+    "This paper presents a robust method for improving ML models.",
+    "This study lacks proper validation and comparison with benchmarks.",
+    "Our proposed system combines NLP with novel algorithms for real-time analysis.",
+    "Experiments conducted use small datasets, limiting generalizability.",
+    "This paper explores computer vision applications in autonomous driving."
+]
+
+# Generate embeddings
+def get_embeddings(texts):
+    tokens = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+    with torch.no_grad():
+        outputs = model(**tokens)
+    return outputs.last_hidden_state.mean(dim=1).numpy()
+
+paper_embeddings = get_embeddings(abstracts)
+
+# Save embeddings
+np.save("data/embeddings/papers_embeddings.npy", paper_embeddings)
