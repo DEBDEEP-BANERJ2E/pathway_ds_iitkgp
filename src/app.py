@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from backend.publishability import PublishabilityClassifier
-from backend.conference import ConferenceRecommender
+from src.backend.publishability import PublishabilityClassifier
+from src.backend.conference import ConferenceRecommender
 import numpy as np
 
 # Initialize FastAPI app
